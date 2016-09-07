@@ -1,9 +1,24 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Subscriber -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Subscriber %></h1>
+</div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @subscriber.email %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:email) %></dt>
+      <dd><pre class="prettyprint"><%= @subscriber.email %></pre></dd>
+  </dl>
+</div>
 
-<%= link_to 'Edit', edit_subscriber_path(@subscriber) %> |
-<%= link_to 'Back', subscribers_path %>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              subscribers_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_subscriber_path(@subscriber), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              subscriber_path(@subscriber),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
+
